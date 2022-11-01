@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:form="http://www.w3.org/1999/html"
+      lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <style type="text/css">
+        .tabs {
+            width: 100%;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        .tabs > input {
+            display: none;
+        }
+
+        .tabs > div {
+            display: none;
+            padding: 12px;
+            border: 1px solid #C0C0C0;
+            background: #FFFFFF;
+        }
+
+        .tabs > label {
+            display: inline-block;
+            padding: 7px;
+            margin: 0 -5px -1px 0;
+            text-align: center;
+            color: #666666;
+            border: 1px solid #C0C0C0;
+            background: #E0E0E0;
+            cursor: pointer;
+        }
+
+        .tabs > input:checked + label {
+            color: #000000;
+            border: 1px solid #C0C0C0;
+            border-bottom: 1px solid #FFFFFF;
+            background: #FFFFFF;
+        }
+
+        #tabSav_1:checked ~ #txtSav_1,
+        #tabSav_2:checked ~ #txtSav_2,
+        #tabSav_3:checked ~ #txtSav_3 {
+            display: block;
+        }
+    </style>
+
+    <title>InvestmentsAccumulation</title>
+
+</head>
+<body>
+
+<h3>Категории накоплений</h3>
+<div class="tabs">
+    <input type="radio" name="inset" value="" id="tabSav_1" checked>
+    <label for="tabSav_1">Инвестиции</label>
+
+    <input type="radio" name="inset" value="" id="tabSav_2">
+    <label for="tabSav_2">Имущественный капитал</label>
+
+    <input type="radio" name="inset" value="" id="tabSav_3">
+    <label for="tabSav_3">Ликвидный капитал</label>
+
+    <div id="txtSav_1">
+        <p>Первая вкладка</p>
+        <table>
+            <tr th:each="investmentsSaving:${investmentsSavingList}">
+                <td th:text="${investmentsSaving.titleInvSav}"/>
+                <td th:text="${investmentsSaving.valueInvSav}"/>
+                <td th:text="${investmentsSaving.dateInvSav}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/saving/removeInvSav/' + ${investmentsSaving.idInvSav}}"
+                       role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="txtSav_2">
+        <p>Вторая вкладка</p>
+        <table>
+            <tr th:each="propertyCapitalSaving:${propertyCapitalSavingList}">
+                <td th:text="${propertyCapitalSaving.titlePropSav}"/>
+                <td th:text="${propertyCapitalSaving.valuePropSav}"/>
+                <td th:text="${propertyCapitalSaving.datePropSav}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/saving/removePropSav/' + ${propertyCapitalSaving.idPropSav}}"
+                       role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="txtSav_3">
+        <p>Третья вкладка</p>
+        <table>
+            <tr th:each="liquidCapitalSaving:${liquidCapitalSavingList}">
+                <td th:text="${liquidCapitalSaving.valueLiqSav}"/>
+                <td th:text="${liquidCapitalSaving.dateLiqSav}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/saving/removeLiqSav/' + ${liquidCapitalSaving.idLiqSav}}"
+                       role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<h4><a th:href="@{personalArea}">Личный кабинет</a></h4>
+</body>
+</html>

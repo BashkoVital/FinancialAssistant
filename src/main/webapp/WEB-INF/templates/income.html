@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+
+    <style type="text/css">
+        .tabs {
+            width: 100%;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        .tabs > input {
+            display: none;
+        }
+
+        .tabs > div {
+            display: none;
+            padding: 12px;
+            border: 1px solid #C0C0C0;
+            background: #FFFFFF;
+        }
+
+        .tabs > label {
+            display: inline-block;
+            padding: 7px;
+            margin: 0 -5px -1px 0;
+            text-align: center;
+            color: #666666;
+            border: 1px solid #C0C0C0;
+            background: #E0E0E0;
+            cursor: pointer;
+        }
+
+        .tabs > input:checked + label {
+            color: #000000;
+            border: 1px solid #C0C0C0;
+            border-bottom: 1px solid #FFFFFF;
+            background: #FFFFFF;
+        }
+
+        #tabInc_1:checked ~ #txtInc_1,
+        #tabInc_2:checked ~ #txtInc_2,
+        #tabInc_3:checked ~ #txtInc_3 {
+            display: block;
+        }
+    </style>
+
+    <title>Income</title>
+</head>
+<body>
+<h3>Категории доходов</h3>
+<div class="tabs">
+    <input type="radio" name="inset" value="" id="tabInc_1" checked>
+    <label for="tabInc_1">Заработная плата</label>
+
+    <input type="radio" name="inset" value="" id="tabInc_2">
+    <label for="tabInc_2">Доход от инвестиций</label>
+
+    <input type="radio" name="inset" value="" id="tabInc_3">
+    <label for="tabInc_3">Другие доходы</label>
+
+    <div id="txtInc_1">
+        <p>Первая вкладка</p>
+        <table>
+            <tr th:each="salaryIncome:${salaryIncomeList}">
+                <td th:text="${salaryIncome.valueSalary}"/>
+                <td th:text="${salaryIncome.dateSalary}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/income/removeSalary/' + ${salaryIncome.idSalary}}"
+                       role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="txtInc_2">
+        <p>Вторая вкладка</p>
+        <table>
+            <tr th:each="investmentIncome:${investmentIncomeList}">
+                <td th:text="${investmentIncome.titleInvInc}"/>
+                <td th:text="${investmentIncome.valueInvInc}"/>
+                <td th:text="${investmentIncome.dateInvInc}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/income/removeInvInc/' + ${investmentIncome.idInvInc}}"
+                       role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="txtInc_3">
+        <p>Третья вкладка</p>
+        <table>
+            <tr th:each="anotherIncome:${anotherIncomeList}">
+                <td th:text="${anotherIncome.titleAnInc}"/>
+                <td th:text="${anotherIncome.valueAnInc}"/>
+                <td th:text="${anotherIncome.dateAnInc}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/income/removeAnInc/' + ${anotherIncome.idAnInc}}"
+                       role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<h4><a th:href="@{personalArea}">Личный кабинет</a></h4>
+</body>
+</html>

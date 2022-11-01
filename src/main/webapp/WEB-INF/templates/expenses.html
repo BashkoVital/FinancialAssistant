@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <style type="text/css">
+        .tabs {
+            width: 100%;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        .tabs > input {
+            display: none;
+        }
+
+        .tabs > div {
+            display: none;
+            padding: 12px;
+            border: 1px solid #C0C0C0;
+            background: #FFFFFF;
+        }
+
+        .tabs > label {
+            display: inline-block;
+            padding: 7px;
+            margin: 0 -5px -1px 0;
+            text-align: center;
+            color: #666666;
+            border: 1px solid #C0C0C0;
+            background: #E0E0E0;
+            cursor: pointer;
+        }
+
+        .tabs > input:checked + label {
+            color: #000000;
+            border: 1px solid #C0C0C0;
+            border-bottom: 1px solid #FFFFFF;
+            background: #FFFFFF;
+        }
+
+        #tab_1:checked ~ #txt_1,
+        #tab_2:checked ~ #txt_2,
+        #tab_3:checked ~ #txt_3,
+        #tab_4:checked ~ #txt_4,
+        #tab_5:checked ~ #txt_5,
+        #tab_6:checked ~ #txt_6 {
+            display: block;
+        }
+    </style>
+<!--    <link type="text/css" rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>-->
+    <title>Expenses</title>
+</head>
+<body>
+<h3>Категории расходов</h3>
+
+<div class="tabs">
+    <input type="radio" name="inset" value="" id="tab_1" checked>
+    <label for="tab_1">Кафе</label>
+
+    <input type="radio" name="inset" value="" id="tab_2">
+    <label for="tab_2">Здоровье</label>
+
+    <input type="radio" name="inset" value="" id="tab_3">
+    <label for="tab_3">Досуг</label>
+
+    <input type="radio" name="inset" value="" id="tab_4">
+    <label for="tab_4">Продукты</label>
+
+    <input type="radio" name="inset" value="" id="tab_5">
+    <label for="tab_5">Транспорт</label>
+
+    <input type="radio" name="inset" value="" id="tab_6">
+    <label for="tab_6">Другое</label>
+
+    <div id="txt_1">
+        <p>Первая вкладка</p>
+        <table>
+            <tr th:each="cafe:${cafeList}">
+                <td th:text="${cafe.titleCafe}"/>
+                <td th:text="${cafe.costCafe}"/>
+                <td th:text="${cafe.dateCafe}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/expenses/removeCafe/' + ${cafe.idCafe}}"
+                       role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_2">
+        <p>Вторая вкладка</p>
+        <table>
+            <tr th:each="health:${healthList}">
+                <td th:text="${health.titleHealth}"/>
+                <td th:text="${health.costHealth}"/>
+                <td th:text="${health.dateHealth}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/expenses/removeHealth/' + ${health.idHealth}}" role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_3">
+        <p>Третья вкладка</p>
+        <table>
+            <tr th:each="leisure:${leisureList}">
+                <td th:text="${leisure.titleLeisure}"/>
+                <td th:text="${leisure.costLeisure}"/>
+                <td th:text="${leisure.dateLeisure}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/expenses/removeLeisure/' + ${leisure.idLeisure}}" role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_4">
+        <p>Четвертая вкладка</p>
+        <table>
+            <tr th:each="product:${productList}">
+                <td th:text="${product.titleProduct}"/>
+                <td th:text="${product.costProduct}"/>
+                <td th:text="${product.dateProduct}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/expenses/removeProduct/' + ${product.idProduct}}" role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="txt_5">
+        <p>Пятая вкладка</p>
+        <table>
+            <tr th:each="transport:${transportList}">
+                <td th:text="${transport.titleTransport}"/>
+                <td th:text="${transport.costTransport}"/>
+                <td th:text="${transport.dateTransport}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/expenses/removeTransport/' + ${transport.idTransport}}" role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="txt_6">
+        <p>Шестая вкладка</p>
+        <table>
+            <tr th:each="others:${othersList}">
+                <td th:text="${others.titleOthers}"/>
+                <td th:text="${others.costOthers}"/>
+                <td th:text="${others.dateOthers}"/>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/expenses/removeOthers/' + ${others.idOthers}}" role="button">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<h4><a th:href="@{personalArea}">Личный кабинет</a></h4>
+</body>
+</html>

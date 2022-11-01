@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:form="http://www.w3.org/1999/html"
+      lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <!--    <link type="text/css" rel="stylesheet" th:href="@{/resources/css/style.css}">-->
+
+    <style type="text/css">
+        .tabs {
+            width: 100%;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        .tabs > input {
+            display: none;
+        }
+
+        .tabs > div {
+            display: none;
+            padding: 12px;
+            border: 1px solid #C0C0C0;
+            background: #FFFFFF;
+        }
+
+        .tabs > label {
+            display: inline-block;
+            padding: 7px;
+            margin: 0 -5px -1px 0;
+            text-align: center;
+            color: #666666;
+            border: 1px solid #C0C0C0;
+            background: #E0E0E0;
+            cursor: pointer;
+        }
+
+        .tabs > input:checked + label {
+            color: #000000;
+            border: 1px solid #C0C0C0;
+            border-bottom: 1px solid #FFFFFF;
+            background: #FFFFFF;
+        }
+
+        #tabInc_1:checked ~ #txtInc_1,
+        #tabInc_2:checked ~ #txtInc_2,
+        #tabInc_3:checked ~ #txtInc_3,
+        #tabAcc_1:checked ~ #txtAcc_1,
+        #tabAcc_2:checked ~ #txtAcc_2,
+        #tabAcc_3:checked ~ #txtAcc_3,
+        #tab_1:checked ~ #txt_1,
+        #tab_2:checked ~ #txt_2,
+        #tab_3:checked ~ #txt_3,
+        #tab_4:checked ~ #txt_4,
+        #tab_5:checked ~ #txt_5,
+        #tab_6:checked ~ #txt_6 {
+            display: block;
+        }
+    </style>
+
+    <title>Личный кабинет</title>
+</head>
+<body>
+<div>
+    <h4><a th:href="@{/}">Главная страница</a></h4>
+    <h2>Личный кабинет</h2>
+    <h3>Категории доходов</h3>
+    <div class="tabs">
+        <input type="radio" name="inset" value="" id="tabInc_1" checked>
+        <label for="tabInc_1">Заработная плата</label>
+
+        <input type="radio" name="inset" value="" id="tabInc_2">
+        <label for="tabInc_2">Доход от инвестиций</label>
+
+        <input type="radio" name="inset" value="" id="tabInc_3">
+        <label for="tabInc_3">Другое</label>
+
+        <div id="txtInc_1">
+            <p>Первая вкладка</p>
+            <form th:id="salaryIncome_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${salaryIncome}">
+                <p>Величина: <input type="text" th:field="*{valueSalary}"
+                                    placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+        <div id="txtInc_2">
+            <p>Вторая вкладка</p>
+            <form th:id="investIncome_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${investmentIncome}">
+                <p>Название: <input type="text" th:field="*{titleInvInc}"
+                                    placeholder="Введите название..."/></p>
+                <p>Величина: <input type="text" th:field="*{valueInvInc}"
+                                    placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+        <div id="txtInc_3">
+            <p>Третья вкладка</p>
+            <form th:id="anotherIncome_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${anotherIncome}">
+                <p>Название: <input type="text" th:field="*{titleAnInc}"
+                                    placeholder="Введите название..."/></p>
+                <p>Величина: <input type="text" th:field="*{valueAnInc}"
+                                    placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <h4><a th:href="@{income}">Сводные данные по доходам</a></h4>
+
+    <h3>Категории накоплений</h3>
+    <div class="tabs">
+        <input type="radio" name="inset" value="" id="tabAcc_1" checked>
+        <label for="tabAcc_1">Инвестиции</label>
+
+        <input type="radio" name="inset" value="" id="tabAcc_2">
+        <label for="tabAcc_2">Имущественный капитал</label>
+
+        <input type="radio" name="inset" value="" id="tabAcc_3">
+        <label for="tabAcc_3">Ликвидный капитал</label>
+
+        <div id="txtAcc_1">
+            <p>Первая вкладка</p>
+            <form th:id="investmentsAccumulation_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${investmentsSaving}">
+                <p>Название: <input type="text" th:field="*{titleInvSav}"
+                                    placeholder="Введите название..."/></p>
+                <p>Величина: <input type="text" th:field="*{valueInvSav}"
+                                    placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+        <div id="txtAcc_2">
+            <p>Вторая вкладка</p>
+            <form th:id="propertyCapitalAccumulation_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${propertyCapitalSaving}">
+                <p>Название: <input type="text" th:field="*{titlePropSav}"
+                                    placeholder="Введите название..."/></p>
+                <p>Величина: <input type="text" th:field="*{valuePropSav}"
+                                    placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+        <div id="txtAcc_3">
+            <p>Третья вкладка</p>
+            <form th:id="liquidCapitalAccumulation_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${liquidCapitalSaving}">
+                <p>Величина: <input type="text" th:field="*{valueLiqSav}"
+                                    placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <h4><a th:href="@{saving}">Сводные данные по сбережениям</a></h4>
+
+    <h3>Категории расходов</h3>
+
+    <div class="tabs">
+        <input type="radio" name="inset" value="" id="tab_1" checked>
+        <label for="tab_1">Кафе</label>
+
+        <input type="radio" name="inset" value="" id="tab_2">
+        <label for="tab_2">Здоровье</label>
+
+        <input type="radio" name="inset" value="" id="tab_3">
+        <label for="tab_3">Досуг</label>
+
+        <input type="radio" name="inset" value="" id="tab_4">
+        <label for="tab_4">Продукты</label>
+
+        <input type="radio" name="inset" value="" id="tab_5">
+        <label for="tab_5">Транспорт</label>
+
+        <input type="radio" name="inset" value="" id="tab_6">
+        <label for="tab_6">Другое</label>
+
+        <div id="txt_1">
+            <p>Первая вкладка</p>
+            <form th:id="cafe_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${cafe}">
+                <p>Название: <input type="text" th:field="*{titleCafe}"
+                                    placeholder="Введите название..."/></p>
+                <p>Стоимость: <input type="text" th:field="*{costCafe}"
+                                     placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+
+        </div>
+        <div id="txt_2">
+            <p>Вторая вкладка</p>
+            <form th:id="health_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${health}">
+                <p>Название: <input type="text" th:field="*{titleHealth}"
+                                    placeholder="Введите название..."/></p>
+                <p>Стоимость: <input type="text" th:field="*{costHealth}"
+                                     placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+        <div id="txt_3">
+            <p>Третья вкладка</p>
+            <form th:id="leisure_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${leisure}">
+                <p>Название: <input type="text" th:field="*{titleLeisure}"
+                                    placeholder="Введите название..."/></p>
+                <p>Стоимость: <input type="text" th:field="*{costLeisure}"
+                                     placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+        <div id="txt_4">
+            <p>Четвертая вкладка</p>
+            <form th:id="product_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${product}">
+                <p>Название: <input type="text" th:field="*{titleProduct}"
+                                    placeholder="Введите название..."/></p>
+                <p>Стоимость: <input type="text" th:field="*{costProduct}"
+                                     placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+
+        <div id="txt_5">
+            <p>Пятая вкладка</p>
+            <form th:id="transport_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${transport}">
+                <p>Название: <input type="text" th:field="*{titleTransport}"
+                                    placeholder="Введите название..."/></p>
+                <p>Стоимость: <input type="text" th:field="*{costTransport}"
+                                     placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+        <div id="txt_6">
+            <p>Шестая вкладка</p>
+            <form th:id="others_idForm" th:method="POST" th:action="@{personalArea}"
+                  th:object="${others}">
+                <p>Название: <input type="text" th:field="*{titleOthers}"
+                                    placeholder="Введите название..."/></p>
+                <p>Стоимость: <input type="text" th:field="*{costOthers}"
+                                     placeholder="Введите значение..."/></p>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <h4><a th:href="@{expenses}">Сводные данные по расходам</a></h4>
+</div>
+<div>
+    <h4><a th:href="@{analytics}">Аналитика</a></h4>
+</div>
+</body>
+</html>
