@@ -28,8 +28,8 @@ public class SavingController {
         this.liquidCapitalSavingServiceJpaImpl = liquidCapitalSavingServiceJpaImpl;
     }
 
-    @GetMapping(value = "/saving")
-    public String getInvestAccumulation(Model model) {
+    @GetMapping(value = "/saving/allTime")
+    public String getSavingByAllTime(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("investmentsSavingList", investmentsSavingServiceJpaImpl.findAllByUserId(user.getId()));
         model.addAttribute("propertyCapitalSavingList", propertyCapitalSavingServiceJpaImpl.findAllByUserId(user.getId()));
@@ -37,20 +37,29 @@ public class SavingController {
         return "saving";
     }
 
+    @GetMapping(value = "/saving/currentMonth")
+    public String getSavingByCurrentMonth(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("investmentsSavingList", investmentsSavingServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        model.addAttribute("propertyCapitalSavingList", propertyCapitalSavingServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        model.addAttribute("liquidCapitalSavingList", liquidCapitalSavingServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        return "saving";
+    }
+
     @GetMapping(value = "/saving/removeInvSav/{id}")
-    public String removeByIdInvSav(@PathVariable(value = "id") Long idInvSav){
+    public String removeByIdInvSav(@PathVariable(value = "id") Long idInvSav) {
         investmentsSavingServiceJpaImpl.deleteById(idInvSav);
         return "redirect:/saving";
     }
 
     @GetMapping(value = "/saving/removePropSav/{id}")
-    public String removeByIdPropSav(@PathVariable(value = "id") Long idPropSav){
+    public String removeByIdPropSav(@PathVariable(value = "id") Long idPropSav) {
         propertyCapitalSavingServiceJpaImpl.deleteById(idPropSav);
         return "redirect:/saving";
     }
 
     @GetMapping(value = "/saving/removeLiqSav/{id}")
-    public String removeByIdLiqSav(@PathVariable(value = "id") Long idLiqSav){
+    public String removeByIdLiqSav(@PathVariable(value = "id") Long idLiqSav) {
         liquidCapitalSavingServiceJpaImpl.deleteById(idLiqSav);
         return "redirect:/saving";
     }

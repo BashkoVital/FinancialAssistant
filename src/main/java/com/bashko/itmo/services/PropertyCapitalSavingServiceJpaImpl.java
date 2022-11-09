@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -56,6 +58,30 @@ public class PropertyCapitalSavingServiceJpaImpl implements PropertyCapitalSavin
         double count = 0;
         for (PropertyCapitalSaving pcs : propertyCapitalSavingRepository.findAllBySavingCategoryFinAssistUserId(id)) {
             count += pcs.getValuePropSav();
+        }
+        return count;
+    }
+
+    @Override
+    public List<PropertyCapitalSaving> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<PropertyCapitalSaving> propertyCapitalSavingList = new LinkedList<>();
+        for (PropertyCapitalSaving pcs : propertyCapitalSavingRepository.findAllBySavingCategoryFinAssistUserId(id)) {
+            if (pcs.getDatePropSav().getMonth() == calendar.get(Calendar.MONTH)) {
+                propertyCapitalSavingList.add(pcs);
+            }
+        }
+        return propertyCapitalSavingList;
+    }
+
+    @Override
+    public double getSumValuePropSavByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (PropertyCapitalSaving pcs : propertyCapitalSavingRepository.findAllBySavingCategoryFinAssistUserId(id)) {
+            if (pcs.getDatePropSav().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += pcs.getValuePropSav();
+            }
         }
         return count;
     }

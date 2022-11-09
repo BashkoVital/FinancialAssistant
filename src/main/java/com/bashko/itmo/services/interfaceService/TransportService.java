@@ -11,4 +11,8 @@ public interface TransportService {
     void save(Transport transport);
 
     double getSumCostTransportByUserId(Long id);
+
+    List<Transport> findAllByDateMonthAndUserId(Long id);
+
+    double getSumCostTransportByDateMonthAndUserId(Long id);
 }

@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -61,6 +63,30 @@ public class LeisureServiceJpaImpl implements LeisureService {
         double count = 0;
         for (Leisure leisure : leisureRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
             count += leisure.getCostLeisure();
+        }
+        return count;
+    }
+
+    @Override
+    public List<Leisure> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<Leisure> leisureList = new LinkedList<>();
+        for (Leisure leisure : leisureRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (leisure.getDateLeisure().getMonth() == calendar.get(Calendar.MONTH)) {
+                leisureList.add(leisure);
+            }
+        }
+        return leisureList;
+    }
+
+    @Override
+    public double getSumCostLeisureByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (Leisure leisure : leisureRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (leisure.getDateLeisure().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += leisure.getCostLeisure();
+            }
         }
         return count;
     }

@@ -70,17 +70,16 @@
         <div><a class="s1" th:href="@{/personalArea.html}">Личный кабинет</a></div>
         <div><a class="s1" th:href="@{/}">Главная страница</a></div>
     </div>
-
     <div class="analytics">
         <h2>Аналитика</h2>
-        <h4>Совокупный доход за текущий месяц составил: <span
+        <h4>Совокупный доход за весь период составил: <span
                 th:text="${valueSalaryAttr + valueInvIncAttr + valueAnIncAttr}"></span></h4>
-        <h4>Совокупные накопления за текущий месяц составили: <span
+        <h4>Совокупные накопления за весь период составили: <span
                 th:text="${valueInvSavAttr+valuePropSavAttr+valueLiqSavAttr}"></span></h4>
-        <h4>Совокупные расходы за текущий месяц составили: <span
+        <h4>Совокупные расходы за весь период составили: <span
                 th:text="${costCafeAttr+costHealthAttr+costLeisureAttr+costProductAttr+costTransportAttr+costOthersAttr}"></span>
         </h4>
-        <h4><a class="s1" th:href="@{/analytics/allTime}">Баланс доходов/расходов за весь период</a></h4>
+        <h4><a class="s1" th:href="@{/analytics/currentMonth}">Баланс доходов/расходов за текущий месяц</a></h4>
     </div>
 </div>
 </body>

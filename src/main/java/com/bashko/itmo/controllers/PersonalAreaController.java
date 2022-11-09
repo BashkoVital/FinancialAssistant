@@ -62,7 +62,7 @@ public class PersonalAreaController {
 
     //===============================================================================================================
 
-    @GetMapping(value = "/personalArea")
+    @GetMapping(value = "/personalArea.html")
     public String getFinAssistant(Model model) {
         model.addAttribute("salaryIncome", new SalaryIncome());
         model.addAttribute("investmentIncome", new InvestmentIncome());
@@ -81,7 +81,7 @@ public class PersonalAreaController {
         return "personalArea";
     }
 
-    @PostMapping(value = "/personalArea")
+    @PostMapping(value = "/personalArea.html")
     public String saveFinAssistant(@ModelAttribute("salaryIncome") SalaryIncome salaryIncome,
                                   @ModelAttribute("investmentIncome") InvestmentIncome investmentIncome,
                                   @ModelAttribute("anotherIncome") AnotherIncome anotherIncome,
@@ -128,7 +128,7 @@ public class PersonalAreaController {
         else if (((Others) model.getAttribute("others")).getCostOthers() != 0)
             othersServiceJpaImpl.save(others);
 
-        return "redirect:/personalArea";
+        return "redirect:/personalArea.html";
     }
 
     //===============================================================================================================

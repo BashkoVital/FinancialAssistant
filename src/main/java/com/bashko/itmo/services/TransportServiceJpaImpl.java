@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -61,6 +63,30 @@ public class TransportServiceJpaImpl implements TransportService {
         double count = 0;
         for (Transport transport : transportRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
             count += transport.getCostTransport();
+        }
+        return count;
+    }
+
+    @Override
+    public List<Transport> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<Transport> transportList = new LinkedList<>();
+        for (Transport transport : transportRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (transport.getDateTransport().getMonth() == calendar.get(Calendar.MONTH)) {
+                transportList.add(transport);
+            }
+        }
+        return transportList;
+    }
+
+    @Override
+    public double getSumCostTransportByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (Transport transport : transportRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (transport.getDateTransport().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += transport.getCostTransport();
+            }
         }
         return count;
     }

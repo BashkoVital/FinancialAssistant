@@ -34,8 +34,8 @@ public class ExpensesController {
         this.othersServiceJpaImpl = othersServiceJpaImpl;
     }
 
-    @GetMapping(value = "/expenses")
-    public String getInvestAccumulation( Model model) {
+    @GetMapping(value = "/expenses/allTime")
+    public String getExpensesByAllTime(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("cafeList", cafeServiceJpaImpl.findAllByUserId(user.getId()));
         model.addAttribute("healthList", healthServiceJpaImpl.findAllByUserId(user.getId()));
@@ -43,6 +43,18 @@ public class ExpensesController {
         model.addAttribute("productList", productServiceJpaImpl.findAllByUserId(user.getId()));
         model.addAttribute("transportList", transportServiceJpaImpl.findAllByUserId(user.getId()));
         model.addAttribute("othersList", othersServiceJpaImpl.findAllByUserId(user.getId()));
+        return "expenses";
+    }
+
+    @GetMapping(value = "/expenses/currentMonth")
+    public String getExpensesByCurrentMonth(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("cafeList", cafeServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        model.addAttribute("healthList", healthServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        model.addAttribute("leisureList", leisureServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        model.addAttribute("productList", productServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        model.addAttribute("transportList", transportServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        model.addAttribute("othersList", othersServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
         return "expenses";
     }
 

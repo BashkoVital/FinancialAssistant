@@ -11,4 +11,8 @@ public interface LiquidCapitalSavingService {
     void save(LiquidCapitalSaving liquidCapitalSaving);
 
     double getSumValueLiqSavByUserId(Long id);
+
+    List<LiquidCapitalSaving> findAllByDateMonthAndUserId(Long id);
+
+    double getSumValueLiqSavByDateMonthAndUserId(Long id);
 }

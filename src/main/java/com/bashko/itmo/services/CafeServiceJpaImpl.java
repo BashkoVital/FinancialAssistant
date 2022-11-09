@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -58,6 +60,30 @@ public class CafeServiceJpaImpl implements CafeService {
         double count = 0;
         for (Cafe cafe : cafeRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
             count += cafe.getCostCafe();
+        }
+        return count;
+    }
+
+    @Override
+    public List<Cafe> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<Cafe> cafeList = new LinkedList<>();
+        for (Cafe cafe : cafeRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (cafe.getDateCafe().getMonth() == calendar.get(Calendar.MONTH)) {
+                cafeList.add(cafe);
+            }
+        }
+        return cafeList;
+    }
+
+    @Override
+    public double getSumCostCafeByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (Cafe cafe : cafeRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (cafe.getDateCafe().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += cafe.getCostCafe();
+            }
         }
         return count;
     }

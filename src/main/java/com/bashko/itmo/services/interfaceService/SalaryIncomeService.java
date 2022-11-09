@@ -11,4 +11,8 @@ public interface SalaryIncomeService {
     void save(SalaryIncome salaryIncome);
 
     double getSumValueSalaryByUserId(Long id);
+
+    List<SalaryIncome> findAllByDateMonthAndUserId(Long id);
+
+    double getSumValueSalaryByDateMonthAndUserId(Long id);
 }

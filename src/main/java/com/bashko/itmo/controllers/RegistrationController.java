@@ -52,7 +52,7 @@ public class RegistrationController {
         finAssistServiceJpaImpl.save(new FinAssist("Saving", user));
         finAssistServiceJpaImpl.save(new FinAssist("Expenses", user));
 
-        return "redirect:/";
+        return "redirect:";
     }
 
 }

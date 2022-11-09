@@ -2,6 +2,7 @@ package com.bashko.itmo.controllers;
 
 import com.bashko.itmo.entities.*;
 import com.bashko.itmo.services.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ public class AnalyticsController {
     private TransportServiceJpaImpl transportServiceJpaImpl;
     private OthersServiceJpaImpl othersServiceJpaImpl;
 
+    @Autowired
     public AnalyticsController(SalaryIncomeServiceJpaImpl salaryIncomeServiceJpaImpl,
                                InvestmentIncomeServiceJpaImpl investmentIncomeServiceJpaImpl,
                                AnotherIncomeServiceJpaImpl anotherIncomeServiceJpaImpl,
@@ -52,8 +54,8 @@ public class AnalyticsController {
         this.othersServiceJpaImpl = othersServiceJpaImpl;
     }
 
-    @GetMapping(value = "/analytics")
-    String getAnalytics(Model model){
+    @GetMapping(value = "/analytics/allTime")
+    String getAnalyticsByAllTime(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("valueSalaryAttr", salaryIncomeServiceJpaImpl.getSumValueSalaryByUserId(user.getId()));
         model.addAttribute("valueInvIncAttr", investmentIncomeServiceJpaImpl.getSumValueInvIncByUserId(user.getId()));
@@ -69,6 +71,26 @@ public class AnalyticsController {
         model.addAttribute("costProductAttr", productServiceJpaImpl.getSumCostProductByUserId(user.getId()));
         model.addAttribute("costTransportAttr", transportServiceJpaImpl.getSumCostTransportByUserId(user.getId()));
         model.addAttribute("costOthersAttr", othersServiceJpaImpl.getSumCostOthersByUserId(user.getId()));
+        return "allTime";
+    }
+
+    @GetMapping(value = "/analytics/currentMonth")
+    String getAnalyticsByCurrentMonth(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("valueSalaryAttr", salaryIncomeServiceJpaImpl.getSumValueSalaryByDateMonthAndUserId(user.getId()));
+        model.addAttribute("valueInvIncAttr", investmentIncomeServiceJpaImpl.getSumValueInvIncByDateMonthAndUserId(user.getId()));
+        model.addAttribute("valueAnIncAttr", anotherIncomeServiceJpaImpl.getSumValueAnIncByDateMonthAndUserId(user.getId()));
+
+        model.addAttribute("valueInvSavAttr", investmentsSavingServiceJpaImpl.getSumValueInvSavByDateMonthAndUserId(user.getId()));
+        model.addAttribute("valuePropSavAttr", propertyCapitalSavingServiceJpaImpl.getSumValuePropSavByDateMonthAndUserId(user.getId()));
+        model.addAttribute("valueLiqSavAttr", liquidCapitalSavingServiceJpaImpl.getSumValueLiqSavByDateMonthAndUserId(user.getId()));
+
+        model.addAttribute("costCafeAttr", cafeServiceJpaImpl.getSumCostCafeByDateMonthAndUserId(user.getId()));
+        model.addAttribute("costHealthAttr", healthServiceJpaImpl.getSumCostHealthByDateMonthAndUserId(user.getId()));
+        model.addAttribute("costLeisureAttr", leisureServiceJpaImpl.getSumCostLeisureByDateMonthAndUserId(user.getId()));
+        model.addAttribute("costProductAttr", productServiceJpaImpl.getSumCostProductByDateMonthAndUserId(user.getId()));
+        model.addAttribute("costTransportAttr", transportServiceJpaImpl.getSumCostTransportByDateMonthAndUserId(user.getId()));
+        model.addAttribute("costOthersAttr", othersServiceJpaImpl.getSumCostOthersByDateMonthAndUserId(user.getId()));
         return "analytics";
     }
 }

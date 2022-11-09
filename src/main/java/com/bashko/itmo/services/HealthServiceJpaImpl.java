@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -62,6 +64,30 @@ public class HealthServiceJpaImpl implements HealthService {
         double count = 0;
         for (Health health : healthRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
             count += health.getCostHealth();
+        }
+        return count;
+    }
+
+    @Override
+    public List<Health> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<Health> healthList = new LinkedList<>();
+        for (Health health : healthRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (health.getDateHealth().getMonth() == calendar.get(Calendar.MONTH)) {
+                healthList.add(health);
+            }
+        }
+        return healthList;
+    }
+
+    @Override
+    public double getSumCostHealthByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (Health health : healthRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (health.getDateHealth().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += health.getCostHealth();
+            }
         }
         return count;
     }

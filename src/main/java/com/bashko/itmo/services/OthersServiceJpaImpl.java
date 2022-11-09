@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -61,6 +63,30 @@ public class OthersServiceJpaImpl implements OthersService {
         double count = 0;
         for (Others others : othersRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
             count += others.getCostOthers();
+        }
+        return count;
+    }
+
+    @Override
+    public List<Others> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<Others> othersList = new LinkedList<>();
+        for (Others others : othersRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (others.getDateOthers().getMonth() == calendar.get(Calendar.MONTH)) {
+                othersList.add(others);
+            }
+        }
+        return othersList;
+    }
+
+    @Override
+    public double getSumCostOthersByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (Others others : othersRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (others.getDateOthers().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += others.getCostOthers();
+            }
         }
         return count;
     }

@@ -4,7 +4,83 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 
-    <style type="text/css">
+    <style >
+        body {
+            padding: 20px;
+            background: #e6f4fd;
+            font-family: 'Fredoka One', cursive;
+        }
+        /*========================================================*/
+        .table_blur {
+            background: #f5ffff;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .table_blur th {
+            border-top: 1px solid #777777;
+            border-bottom: 1px solid #777777;
+            box-shadow: inset 0 1px 0 #999999, inset 0 -1px 0 #999999;
+            background: linear-gradient(#9595b6, #5a567f);
+            color: white;
+            padding: 10px 15px;
+            position: relative;
+        }
+
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+
+        .table_blur th:after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 25%;
+            height: 25%;
+            width: 100%;
+            background: linear-gradient(rgba(255, 255, 255, 0), rgba(255,255,255,.08));
+        }
+        .table_blur tr:nth-child(odd) {
+            background: #ebf3f9;
+        }
+        .table_blur th:first-child {
+            border-left: 1px solid #777777;
+            border-bottom:  1px solid #777777;
+            box-shadow: inset 1px 1px 0 #999999, inset 0 -1px 0 #999999;
+        }
+        .table_blur th:last-child {
+            border-right: 1px solid #777777;
+            border-bottom:  1px solid #777777;
+            box-shadow: inset -1px 1px 0 #999999, inset 0 -1px 0 #999999;
+        }
+        .table_blur td {
+            border: 1px solid #e3eef7;
+            padding: 10px 15px;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        .table_blur tbody:hover td {
+            color: transparent;
+            text-shadow: 0 0 3px #a09f9d;
+        }
+        .table_blur tbody:hover tr:hover td {
+            color: #444444;
+            text-shadow: none;
+        }
+
+        .table_blur a {
+            display: inline-block;
+            padding: 5px 10px;
+            background: blanchedalmond;
+            box-shadow: 2px 2px 0 0 burlywood;
+            position: relative;
+        }
+        .table_blur a:hover {
+            box-shadow: none;
+            top: 2px;
+            left: 2px;
+        }
+        /*================================================*/
         .tabs {
             width: 100%;
             padding: 0px;
@@ -18,8 +94,9 @@
         .tabs > div {
             display: none;
             padding: 12px;
-            border: 1px solid #C0C0C0;
-            background: #FFFFFF;
+            border: 1px solid #0010ff;
+            background: #e3eef7;
+            text-align: left;
         }
 
         .tabs > label {
@@ -35,9 +112,9 @@
 
         .tabs > input:checked + label {
             color: #000000;
-            border: 1px solid #C0C0C0;
-            border-bottom: 1px solid #FFFFFF;
-            background: #FFFFFF;
+            border: 1px solid #0010ff;
+            border-bottom: 1px solid #e3eef7;
+            background: #e3eef7;
         }
 
         #tabInc_1:checked ~ #txtInc_1,
@@ -45,64 +122,127 @@
         #tabInc_3:checked ~ #txtInc_3 {
             display: block;
         }
+        /*==============================*/
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 10px;
+            letter-spacing: 1px;
+            margin: 0 20px;
+            font-size: 24px;
+            font-family: 'Fredoka One', cursive;
+            transition: .3s ease-in-out;
+        }
+
+        .s1 {
+            color: brown;
+            letter-spacing: 1px;
+            border-bottom: 1px solid transparent;
+            border-top: 1px solid transparent;
+        }
+        .s1:hover {
+            border-bottom: 1px solid brown;
+            border-top: 1px solid brown;
+        }
+
+        /*===============================*/
+        .container {
+            width: 100%;
+        }
+
+        .top_container {
+            width: 100%;
+            height: 50px;
+        }
+
+        .top_container div{
+            width: 300px;
+            height: 50px;
+        }
+
+        .top_container div:nth-child(1) {
+            float:right;
+        }
+
+        .top_container div:nth-child(2) {
+            float:left;
+        }
+        .category {
+            margin-top: 6px;
+            margin-bottom: 0px;
+        }
     </style>
 
     <title>Income</title>
 </head>
 <body>
-<h3>Категории доходов</h3>
-<div class="tabs">
-    <input type="radio" name="inset" value="" id="tabInc_1" checked>
-    <label for="tabInc_1">Заработная плата</label>
-
-    <input type="radio" name="inset" value="" id="tabInc_2">
-    <label for="tabInc_2">Доход от инвестиций</label>
-
-    <input type="radio" name="inset" value="" id="tabInc_3">
-    <label for="tabInc_3">Другие доходы</label>
-
-    <div id="txtInc_1">
-        <p>Первая вкладка</p>
-        <table>
-            <tr th:each="salaryIncome:${salaryIncomeList}">
-                <td th:text="${salaryIncome.valueSalary}"/>
-                <td th:text="${salaryIncome.dateSalary}"/>
-                <td>
-                    <a class="btn btn-danger" th:href="@{'/income/removeSalary/' + ${salaryIncome.idSalary}}"
-                       role="button">Remove</a>
-                </td>
-            </tr>
-        </table>
+<div class="container">
+    <div class="top_container">
+        <div><a class="s1" th:href="@{/personalArea.html}">Личный кабинет</a></div>
+        <div><h2 class="category">Категории доходов</h2></div>
     </div>
-    <div id="txtInc_2">
-        <p>Вторая вкладка</p>
-        <table>
-            <tr th:each="investmentIncome:${investmentIncomeList}">
-                <td th:text="${investmentIncome.titleInvInc}"/>
-                <td th:text="${investmentIncome.valueInvInc}"/>
-                <td th:text="${investmentIncome.dateInvInc}"/>
-                <td>
-                    <a class="btn btn-danger" th:href="@{'/income/removeInvInc/' + ${investmentIncome.idInvInc}}"
-                       role="button">Remove</a>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div id="txtInc_3">
-        <p>Третья вкладка</p>
-        <table>
-            <tr th:each="anotherIncome:${anotherIncomeList}">
-                <td th:text="${anotherIncome.titleAnInc}"/>
-                <td th:text="${anotherIncome.valueAnInc}"/>
-                <td th:text="${anotherIncome.dateAnInc}"/>
-                <td>
-                    <a class="btn btn-danger" th:href="@{'/income/removeAnInc/' + ${anotherIncome.idAnInc}}"
-                       role="button">Remove</a>
-                </td>
-            </tr>
-        </table>
+
+    <div class="tabs">
+        <input type="radio" name="inset" value="" id="tabInc_1" checked>
+        <label for="tabInc_1">Заработная плата</label>
+
+        <input type="radio" name="inset" value="" id="tabInc_2">
+        <label for="tabInc_2">Доход от инвестиций</label>
+
+        <input type="radio" name="inset" value="" id="tabInc_3">
+        <label for="tabInc_3">Другие доходы</label>
+
+        <div id="txtInc_1">
+            <table class="table_blur">
+                <tr>
+                    <th>Величина</th><th>Дата</th><th>Примечание</th>
+                </tr>
+                <tr th:each="salaryIncome:${salaryIncomeList}">
+                    <td th:text="${salaryIncome.valueSalary}"/>
+                    <td th:text="${salaryIncome.dateSalary}"/>
+                    <td>
+                        <a class="btn btn-danger" th:href="@{'/income/removeSalary/' + ${salaryIncome.idSalary}}"
+                           role="button">Удалить</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="txtInc_2">
+            <table class="table_blur">
+                <tr>
+                    <th>Название</th><th>Величина</th><th>Дата</th><th>Примечание</th>
+                </tr>
+                <tr th:each="investmentIncome:${investmentIncomeList}">
+                    <td th:text="${investmentIncome.titleInvInc}"/>
+                    <td th:text="${investmentIncome.valueInvInc}"/>
+                    <td th:text="${investmentIncome.dateInvInc}"/>
+                    <td>
+                        <a class="btn btn-danger" th:href="@{'/income/removeInvInc/' + ${investmentIncome.idInvInc}}"
+                           role="button">Удалить</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="txtInc_3">
+            <table class="table_blur">
+                <tr>
+                    <th>Название</th><th>Величина</th><th>Дата</th><th>Примечание</th>
+                </tr>
+                <tr th:each="anotherIncome:${anotherIncomeList}">
+                    <td th:text="${anotherIncome.titleAnInc}"/>
+                    <td th:text="${anotherIncome.valueAnInc}"/>
+                    <td th:text="${anotherIncome.dateAnInc}"/>
+                    <td>
+                        <a class="btn btn-danger" th:href="@{'/income/removeAnInc/' + ${anotherIncome.idAnInc}}"
+                           role="button">Удалить</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
-<h4><a th:href="@{personalArea}">Личный кабинет</a></h4>
+
+
 </body>
 </html>

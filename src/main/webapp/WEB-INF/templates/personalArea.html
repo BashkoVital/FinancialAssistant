@@ -6,11 +6,30 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <!--    <link type="text/css" rel="stylesheet" th:href="@{/resources/css/style.css}">-->
 
-    <style type="text/css">
+    <style>
+        body {
+            padding: 20px;
+            background: #e6f4fd;
+            color: #1e1f26;
+            font: 18px/1.5 sans-serif;
+            font-family: 'Fredoka One', cursive;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: brown;
+        }
+
+        div .totalData {
+            text-align: center;
+            color: blue;
+        }
+
         .tabs {
             width: 100%;
             padding: 0px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .tabs > input {
@@ -20,8 +39,9 @@
         .tabs > div {
             display: none;
             padding: 12px;
-            border: 1px solid #C0C0C0;
-            background: #FFFFFF;
+            border: 1px solid #0010ff;
+            background: #e3eef7;
+            text-align: left;
         }
 
         .tabs > label {
@@ -37,17 +57,17 @@
 
         .tabs > input:checked + label {
             color: #000000;
-            border: 1px solid #C0C0C0;
-            border-bottom: 1px solid #FFFFFF;
-            background: #FFFFFF;
+            border: 1px solid #0010ff;
+            border-bottom: 1px solid #e3eef7;
+            background: #e3eef7;
         }
 
         #tabInc_1:checked ~ #txtInc_1,
         #tabInc_2:checked ~ #txtInc_2,
         #tabInc_3:checked ~ #txtInc_3,
-        #tabAcc_1:checked ~ #txtAcc_1,
-        #tabAcc_2:checked ~ #txtAcc_2,
-        #tabAcc_3:checked ~ #txtAcc_3,
+        #tabSav_1:checked ~ #txtSav_1,
+        #tabSav_2:checked ~ #txtSav_2,
+        #tabSav_3:checked ~ #txtSav_3,
         #tab_1:checked ~ #txt_1,
         #tab_2:checked ~ #txt_2,
         #tab_3:checked ~ #txt_3,
@@ -56,17 +76,172 @@
         #tab_6:checked ~ #txt_6 {
             display: block;
         }
+
+        /*==================================*/
+
+
+        /*=========================================*/
+
+        .sq-btn {
+            display: inline-block;
+            position: relative;
+            min-width: 178px;
+            margin: 6px 28px;
+            padding: 15px 40px;
+            font-weight: 800;
+            font-family: sans-serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #0010ff;
+            transition: .15s ease-out;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        /*.btn-one {*/
+        /*    color: #ff9585;*/
+        /*}*/
+        .sq-btn:last-of-type {
+            margin: 6px 28px;
+        }
+
+        .sq-btn:before {
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: 0;
+            height: calc(100% + 12px);
+            width: 100%;
+            border: 2px solid #0010ff;
+            box-sizing: border-box;
+            transition: .2s ease-in-out;
+        }
+
+        /*.btn-one:before {*/
+        /*    border: 2px solid #ff9585;*/
+        /*}*/
+        .sq-btn:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -8px;
+            height: 100%;
+            width: calc(100% + 16px);
+            border: 1px solid #0010ff;
+            box-sizing: border-box;
+            transition: .2s ease-in-out;
+        }
+
+        /*.btn-one:after {*/
+        /*    border: 1px solid #ff9585;*/
+        /*}*/
+        .sq-btn:hover:before {
+            top: 0;
+            left: -8px;
+            height: 100%;
+            width: calc(100% + 16px);
+        }
+
+        .sq-btn:hover:after {
+            top: -6px;
+            left: 0;
+            height: calc(100% + 12px);
+            width: 100%;
+        }
+
+        /*=====================================================*/
+        /*стиль формы*/
+
+        form {
+            width: 300px;
+        }
+
+        fieldset {
+            margin: 0 0 20px;
+            padding: 20px 15px;
+
+            border: 2px solid #0010ff;
+        }
+
+        button {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 7px;
+
+            color: #fff;
+            font-weight: bold;
+
+            background: #47cf73;
+
+            cursor: pointer;
+        }
+
+        /*==============================*/
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 10px;
+            letter-spacing: 1px;
+            margin: 0 20px;
+            font-size: 24px;
+            font-family: 'Fredoka One', cursive;
+            transition: .3s ease-in-out;
+        }
+
+        .s1 {
+            color: brown;
+            letter-spacing: 1px;
+            border-bottom: 1px solid transparent;
+            border-top: 1px solid transparent;
+        }
+
+        .s1:hover {
+            border-bottom: 1px solid brown;
+            border-top: 1px solid brown;
+        }
+
+        /*===============================*/
+
+        .eleven {
+            box-sizing: border-box;
+            border: 1px solid mediumpurple;
+            color: mediumpurple;
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 1.2px;
+            line-height: 1;
+            padding: 15px 40px;
+            position: relative;
+            text-align: center;
+        }
+
+        .eleven:hover:after {
+            content: "";
+            display: block;
+            border: 3px solid purple;
+            position: absolute;
+            top: -5px;
+            right: 3px;
+            bottom: -5px;
+            left: 3px;
+            text-align: center;
+        }
+
     </style>
 
     <title>Личный кабинет</title>
 </head>
+
 <body>
 <div>
-    <h4><a th:href="@{/}">Главная страница</a></h4>
+    <a class="s1" th:href="@{/}">Главная страница</a>
     <h2>Личный кабинет</h2>
     <h3>Категории доходов</h3>
     <div class="tabs">
-        <input type="radio" name="inset" value="" id="tabInc_1" checked>
+        <input type="radio" name="inset" value="" id="tabInc_1">
         <label for="tabInc_1">Заработная плата</label>
 
         <input type="radio" name="inset" value="" id="tabInc_2">
@@ -76,88 +251,103 @@
         <label for="tabInc_3">Другое</label>
 
         <div id="txtInc_1">
-            <p>Первая вкладка</p>
-            <form th:id="salaryIncome_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${salaryIncome}">
-                <p>Величина: <input type="text" th:field="*{valueSalary}"
-                                    placeholder="Введите значение..."/></p>
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${salaryIncome}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>
+                        Величина:
+                        <input type="text" name="value" th:field="*{valueSalary}" required
+                               placeholder="Введите значение...">
+                    </label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
         <div id="txtInc_2">
-            <p>Вторая вкладка</p>
-            <form th:id="investIncome_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${investmentIncome}">
-                <p>Название: <input type="text" th:field="*{titleInvInc}"
-                                    placeholder="Введите название..."/></p>
-                <p>Величина: <input type="text" th:field="*{valueInvInc}"
-                                    placeholder="Введите значение..."/></p>
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${investmentIncome}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titleInvInc}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Величина: <input type="text" th:field="*{valueInvInc}"
+                                            placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
         <div id="txtInc_3">
-            <p>Третья вкладка</p>
-            <form th:id="anotherIncome_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${anotherIncome}">
-                <p>Название: <input type="text" th:field="*{titleAnInc}"
-                                    placeholder="Введите название..."/></p>
-                <p>Величина: <input type="text" th:field="*{valueAnInc}"
-                                    placeholder="Введите значение..."/></p>
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${anotherIncome}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titleAnInc}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Величина: <input type="text" th:field="*{valueAnInc}"
+                                            placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
     </div>
-    <h4><a th:href="@{income}">Сводные данные по доходам</a></h4>
+    <div class="totalData">
+        <h4><a class="sq-btn" th:href="@{/income/currentMonth}">Сводные данные по доходам</a></h4>
+    </div>
+
 
     <h3>Категории накоплений</h3>
     <div class="tabs">
-        <input type="radio" name="inset" value="" id="tabAcc_1" checked>
-        <label for="tabAcc_1">Инвестиции</label>
+        <input type="radio" name="inset" value="" id="tabSav_1">
+        <label for="tabSav_1">Инвестиции</label>
 
-        <input type="radio" name="inset" value="" id="tabAcc_2">
-        <label for="tabAcc_2">Имущественный капитал</label>
+        <input type="radio" name="inset" value="" id="tabSav_2">
+        <label for="tabSav_2">Имущественный капитал</label>
 
-        <input type="radio" name="inset" value="" id="tabAcc_3">
-        <label for="tabAcc_3">Ликвидный капитал</label>
+        <input type="radio" name="inset" value="" id="tabSav_3">
+        <label for="tabSav_3">Ликвидный капитал</label>
 
-        <div id="txtAcc_1">
-            <p>Первая вкладка</p>
-            <form th:id="investmentsAccumulation_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${investmentsSaving}">
-                <p>Название: <input type="text" th:field="*{titleInvSav}"
-                                    placeholder="Введите название..."/></p>
-                <p>Величина: <input type="text" th:field="*{valueInvSav}"
-                                    placeholder="Введите значение..."/></p>
+        <div id="txtSav_1">
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${investmentsSaving}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titleInvSav}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Величина: <input type="text" th:field="*{valueInvSav}"
+                                            placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
-        <div id="txtAcc_2">
-            <p>Вторая вкладка</p>
-            <form th:id="propertyCapitalAccumulation_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${propertyCapitalSaving}">
-                <p>Название: <input type="text" th:field="*{titlePropSav}"
-                                    placeholder="Введите название..."/></p>
-                <p>Величина: <input type="text" th:field="*{valuePropSav}"
-                                    placeholder="Введите значение..."/></p>
+        <div id="txtSav_2">
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${propertyCapitalSaving}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titlePropSav}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Величина: <input type="text" th:field="*{valuePropSav}"
+                                            placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
-        <div id="txtAcc_3">
-            <p>Третья вкладка</p>
-            <form th:id="liquidCapitalAccumulation_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${liquidCapitalSaving}">
-                <p>Величина: <input type="text" th:field="*{valueLiqSav}"
-                                    placeholder="Введите значение..."/></p>
+        <div id="txtSav_3">
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${liquidCapitalSaving}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Величина: <input type="text" th:field="*{valueLiqSav}"
+                                            placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
     </div>
-    <h4><a th:href="@{saving}">Сводные данные по сбережениям</a></h4>
+    <div class="totalData">
+        <h4><a class="sq-btn" th:href="@{/saving/currentMonth}"> Сводные данные по сбережениям</a></h4>
+    </div>
+
 
     <h3>Категории расходов</h3>
 
     <div class="tabs">
-        <input type="radio" name="inset" value="" id="tab_1" checked>
+        <input type="radio" name="inset" value="" id="tab_1">
         <label for="tab_1">Кафе</label>
 
         <input type="radio" name="inset" value="" id="tab_2">
@@ -176,78 +366,86 @@
         <label for="tab_6">Другое</label>
 
         <div id="txt_1">
-            <p>Первая вкладка</p>
-            <form th:id="cafe_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${cafe}">
-                <p>Название: <input type="text" th:field="*{titleCafe}"
-                                    placeholder="Введите название..."/></p>
-                <p>Стоимость: <input type="text" th:field="*{costCafe}"
-                                     placeholder="Введите значение..."/></p>
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${cafe}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titleCafe}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Стоимость: <input type="text" th:field="*{costCafe}"
+                                             placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
-
         </div>
         <div id="txt_2">
-            <p>Вторая вкладка</p>
-            <form th:id="health_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${health}">
-                <p>Название: <input type="text" th:field="*{titleHealth}"
-                                    placeholder="Введите название..."/></p>
-                <p>Стоимость: <input type="text" th:field="*{costHealth}"
-                                     placeholder="Введите значение..."/></p>
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${health}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titleHealth}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Стоимость: <input type="text" th:field="*{costHealth}"
+                                             placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
         <div id="txt_3">
-            <p>Третья вкладка</p>
-            <form th:id="leisure_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${leisure}">
-                <p>Название: <input type="text" th:field="*{titleLeisure}"
-                                    placeholder="Введите название..."/></p>
-                <p>Стоимость: <input type="text" th:field="*{costLeisure}"
-                                     placeholder="Введите значение..."/></p>
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${leisure}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titleLeisure}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Стоимость: <input type="text" th:field="*{costLeisure}"
+                                             placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
         <div id="txt_4">
-            <p>Четвертая вкладка</p>
-            <form th:id="product_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${product}">
-                <p>Название: <input type="text" th:field="*{titleProduct}"
-                                    placeholder="Введите название..."/></p>
-                <p>Стоимость: <input type="text" th:field="*{costProduct}"
-                                     placeholder="Введите значение..."/></p>
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${product}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titleProduct}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Стоимость: <input type="text" th:field="*{costProduct}"
+                                             placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
 
         <div id="txt_5">
-            <p>Пятая вкладка</p>
-            <form th:id="transport_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${transport}">
-                <p>Название: <input type="text" th:field="*{titleTransport}"
-                                    placeholder="Введите название..."/></p>
-                <p>Стоимость: <input type="text" th:field="*{costTransport}"
-                                     placeholder="Введите значение..."/></p>
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${transport}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titleTransport}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Стоимость: <input type="text" th:field="*{costTransport}"
+                                             placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
         <div id="txt_6">
-            <p>Шестая вкладка</p>
-            <form th:id="others_idForm" th:method="POST" th:action="@{personalArea}"
-                  th:object="${others}">
-                <p>Название: <input type="text" th:field="*{titleOthers}"
-                                    placeholder="Введите название..."/></p>
-                <p>Стоимость: <input type="text" th:field="*{costOthers}"
-                                     placeholder="Введите значение..."/></p>
+            <form th:method="POST" th:action="@{personalArea.html}" th:object="${others}">
+                <fieldset>
+                    <legend>Введите данные</legend>
+                    <label>Название: <input type="text" th:field="*{titleOthers}"
+                                            placeholder="Введите название..."/></label>
+                    <label>Стоимость: <input type="text" th:field="*{costOthers}"
+                                             placeholder="Введите значение..."/></label>
+                </fieldset>
                 <button type="submit">Сохранить</button>
             </form>
         </div>
     </div>
-    <h4><a th:href="@{expenses}">Сводные данные по расходам</a></h4>
+    <div class="totalData">
+        <h4><a class="sq-btn" th:href="@{/expenses/currentMonth}">Сводные данные по расходам</a></h4>
+    </div>
+    <div class="totalData">
+        <h4><a class="eleven" th:href="@{/analytics/currentMonth}">Баланс доходов/расходов за текущий месяц</a></h4>
+    </div>
 </div>
-<div>
-    <h4><a th:href="@{analytics}">Аналитика</a></h4>
-</div>
+
 </body>
 </html>

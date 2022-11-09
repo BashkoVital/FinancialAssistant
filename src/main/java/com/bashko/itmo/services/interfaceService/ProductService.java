@@ -12,4 +12,8 @@ public interface ProductService {
     void save(Product product);
 
     double getSumCostProductByUserId(Long id);
+
+    List<Product> findAllByDateMonthAndUserId(Long id);
+
+    double getSumCostProductByDateMonthAndUserId(Long id);
 }

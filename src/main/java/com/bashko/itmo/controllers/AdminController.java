@@ -21,7 +21,7 @@ public class AdminController {
         this.roleRepository = roleRepository;
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/admin.html")
     public String registration(Model model) {
         model.addAttribute("userList",userServiceImpl.findAllByRolesNotContaining(roleRepository.findByName("ROLE_ADMIN")));
         return "admin";

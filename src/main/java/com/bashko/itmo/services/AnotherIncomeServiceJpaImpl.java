@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -53,8 +55,32 @@ public class AnotherIncomeServiceJpaImpl implements AnotherIncomeService {
     @Override
     public double getSumValueAnIncByUserId(Long id) {
         double count = 0;
-        for (AnotherIncome ai: anotherIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
+        for (AnotherIncome ai : anotherIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
             count += ai.getValueAnInc();
+        }
+        return count;
+    }
+
+    @Override
+    public List<AnotherIncome> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<AnotherIncome> anotherIncomeList = new LinkedList<>();
+        for (AnotherIncome ai : anotherIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
+            if (ai.getDateAnInc().getMonth() == calendar.get(Calendar.MONTH)) {
+                anotherIncomeList.add(ai);
+            }
+        }
+        return anotherIncomeList;
+    }
+
+    @Override
+    public double getSumValueAnIncByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (AnotherIncome ai : anotherIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
+            if (ai.getDateAnInc().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += ai.getValueAnInc();
+            }
         }
         return count;
     }

@@ -24,12 +24,21 @@ public class IncomeController {
         this.anotherIncomeServiceJpaImpl = anotherIncomeServiceJpaImpl;
     }
 
-    @GetMapping(value = "/income")
-    public String getInvestAccumulation(Model model) {
+    @GetMapping(value = "/income/allTime")
+    public String getIncomeByAllTime(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("salaryIncomeList", salaryIncomeServiceJpaImpl.findAllByUserId(user.getId()));
         model.addAttribute("investmentIncomeList", investmentsSavingServiceJpaImpl.findAllByUserId(user.getId()));
         model.addAttribute("anotherIncomeList", anotherIncomeServiceJpaImpl.findAllByUserId(user.getId()));
+        return "income";
+    }
+
+    @GetMapping(value = "/income/currentMonth")
+    public String getIncomeByCurrentMonth(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("salaryIncomeList", salaryIncomeServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        model.addAttribute("investmentIncomeList", investmentsSavingServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
+        model.addAttribute("anotherIncomeList", anotherIncomeServiceJpaImpl.findAllByDateMonthAndUserId(user.getId()));
         return "income";
     }
 

@@ -10,4 +10,8 @@ public interface InvestmentIncomeService {
     void save(InvestmentIncome investmentIncome);
 
     double getSumValueInvIncByUserId(Long id);
+
+    List<InvestmentIncome> findAllByDateMonthAndUserId(Long id);
+
+    double getSumValueInvIncByDateMonthAndUserId(Long id);
 }

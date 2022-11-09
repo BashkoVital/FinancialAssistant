@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -55,6 +57,30 @@ public class LiquidCapitalSavingServiceJpaImpl implements LiquidCapitalSavingSer
         double count = 0;
         for (LiquidCapitalSaving lcs : liquidCapitalSavingRepository.findAllBySavingCategoryFinAssistUserId(id)) {
             count += lcs.getValueLiqSav();
+        }
+        return count;
+    }
+
+    @Override
+    public List<LiquidCapitalSaving> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<LiquidCapitalSaving> liquidCapitalSavingList = new LinkedList<>();
+        for (LiquidCapitalSaving lcs : liquidCapitalSavingRepository.findAllBySavingCategoryFinAssistUserId(id)) {
+            if (lcs.getDateLiqSav().getMonth() == calendar.get(Calendar.MONTH)) {
+                liquidCapitalSavingList.add(lcs);
+            }
+        }
+        return liquidCapitalSavingList;
+    }
+
+    @Override
+    public double getSumValueLiqSavByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (LiquidCapitalSaving lcs : liquidCapitalSavingRepository.findAllBySavingCategoryFinAssistUserId(id)) {
+            if (lcs.getDateLiqSav().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += lcs.getValueLiqSav();
+            }
         }
         return count;
     }

@@ -11,4 +11,8 @@ public interface PropertyCapitalSavingService {
     void save(PropertyCapitalSaving propertyCapitalSaving);
 
     double getSumValuePropSavByUserId(Long id);
+
+    List<PropertyCapitalSaving> findAllByDateMonthAndUserId(Long id);
+
+    double getSumValuePropSavByDateMonthAndUserId(Long id);
 }

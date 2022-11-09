@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -54,8 +56,32 @@ public class SalaryIncomeServiceJpaImpl implements SalaryIncomeService {
     @Override
     public double getSumValueSalaryByUserId(Long id) {
         double count = 0;
-        for (SalaryIncome si:salaryIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
+        for (SalaryIncome si : salaryIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
             count += si.getValueSalary();
+        }
+        return count;
+    }
+
+    @Override
+    public List<SalaryIncome> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<SalaryIncome> salaryIncomeList = new LinkedList<>();
+        for (SalaryIncome si : salaryIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
+            if (si.getDateSalary().getMonth() == calendar.get(Calendar.MONTH)) {
+                salaryIncomeList.add(si);
+            }
+        }
+        return salaryIncomeList;
+    }
+
+    @Override
+    public double getSumValueSalaryByDateMonthAndUserId(Long id) {
+        int count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (SalaryIncome si : salaryIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
+            if (si.getDateSalary().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += si.getValueSalary();
+            }
         }
         return count;
     }

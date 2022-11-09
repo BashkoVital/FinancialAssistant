@@ -12,4 +12,8 @@ public interface HealthService {
     void save(Health health);
 
     double getSumCostHealthByUserId(Long id);
+
+    List<Health> findAllByDateMonthAndUserId(Long id);
+
+    double getSumCostHealthByDateMonthAndUserId(Long id);
 }

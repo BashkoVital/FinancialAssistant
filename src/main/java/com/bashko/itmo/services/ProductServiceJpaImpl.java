@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -61,6 +63,30 @@ public class ProductServiceJpaImpl implements ProductService {
         double count = 0;
         for (Product product : productRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
             count += product.getCostProduct();
+        }
+        return count;
+    }
+
+    @Override
+    public List<Product> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<Product> productList = new LinkedList<>();
+        for (Product product : productRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (product.getDateProduct().getMonth() == calendar.get(Calendar.MONTH)) {
+                productList.add(product);
+            }
+        }
+        return productList;
+    }
+
+    @Override
+    public double getSumCostProductByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (Product product : productRepository.findAllByExpensesCategoryFinAssistUserId(id)) {
+            if (product.getDateProduct().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += product.getCostProduct();
+            }
         }
         return count;
     }

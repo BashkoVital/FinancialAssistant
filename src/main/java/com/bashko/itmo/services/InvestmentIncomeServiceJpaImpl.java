@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -55,6 +57,30 @@ public class InvestmentIncomeServiceJpaImpl implements InvestmentIncomeService {
         double count = 0;
         for (InvestmentIncome ii : investmentIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
             count += ii.getValueInvInc();
+        }
+        return count;
+    }
+
+    @Override
+    public List<InvestmentIncome> findAllByDateMonthAndUserId(Long id) {
+        Calendar calendar = Calendar.getInstance();
+        List<InvestmentIncome> investmentIncomeList = new LinkedList<>();
+        for (InvestmentIncome ii : investmentIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
+            if (ii.getDateInvInc().getMonth() == calendar.get(Calendar.MONTH)) {
+                investmentIncomeList.add(ii);
+            }
+        }
+        return investmentIncomeList;
+    }
+
+    @Override
+    public double getSumValueInvIncByDateMonthAndUserId(Long id) {
+        double count = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (InvestmentIncome ii : investmentIncomeRepository.findAllByIncomeCategoryFinAssistUserId(id)) {
+            if (ii.getDateInvInc().getMonth() == calendar.get(Calendar.MONTH)) {
+                count += ii.getValueInvInc();
+            }
         }
         return count;
     }

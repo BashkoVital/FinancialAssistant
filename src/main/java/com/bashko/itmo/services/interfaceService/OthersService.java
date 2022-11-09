@@ -12,4 +12,8 @@ public interface OthersService {
     void save(Others cafe);
 
     double getSumCostOthersByUserId(Long id);
+
+    List<Others> findAllByDateMonthAndUserId(Long id);
+
+    double getSumCostOthersByDateMonthAndUserId(Long id);
 }

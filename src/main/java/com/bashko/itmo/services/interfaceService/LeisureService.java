@@ -12,4 +12,8 @@ public interface LeisureService {
     void save(Leisure leisure);
 
     double getSumCostLeisureByUserId(Long id);
+
+    List<Leisure> findAllByDateMonthAndUserId(Long id);
+
+    double getSumCostLeisureByDateMonthAndUserId(Long id);
 }
