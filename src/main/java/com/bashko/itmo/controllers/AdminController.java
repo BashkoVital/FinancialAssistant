@@ -27,9 +27,9 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping(value = "/admin/removeUser/{id}")
+    @GetMapping(value = "/admin.html/removeUser/{id}")
     public String removeByIdCafe(@PathVariable(value = "id") Long idUser) {
         userServiceImpl.deleteById(idUser);
-        return "redirect:/admin";
+        return "redirect:/admin.html";
     }
 }

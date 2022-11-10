@@ -61,37 +61,37 @@ public class ExpensesController {
     @GetMapping(value = "/expenses/removeCafe/{id}")
     public String removeByIdCafe(@PathVariable(value = "id") Long idCafe) {
         cafeServiceJpaImpl.deleteById(idCafe);
-        return "redirect:/expenses";
+        return "redirect:/expenses/currentMonth";
     }
 
     @GetMapping(value = "/expenses/removeHealth/{id}")
     public String removeByIdHealth(@PathVariable(value = "id") Long idHealth) {
         healthServiceJpaImpl.deleteById(idHealth);
-        return "redirect:/expenses";
+        return "redirect:/expenses/currentMonth";
     }
 
     @GetMapping(value = "/expenses/removeLeisure/{id}")
     public String removeByIdLeisure(@PathVariable(value = "id") Long idLeisure) {
         leisureServiceJpaImpl.deleteById(idLeisure);
-        return "redirect:/expenses";
+        return "redirect:/expenses/currentMonth";
     }
 
     @GetMapping(value = "/expenses/removeProduct/{id}")
     public String removeByIdProduct(@PathVariable(value = "id") Long idProduct) {
         productServiceJpaImpl.deleteById(idProduct);
-        return "redirect:/expenses";
+        return "redirect:/expenses/currentMonth";
     }
 
     @GetMapping(value = "/expenses/removeTransport/{id}")
     public String removeByIdTransport(@PathVariable(value = "id") Long idTransport) {
         transportServiceJpaImpl.deleteById(idTransport);
-        return "redirect:/expenses";
+        return "redirect:/expenses/currentMonth";
     }
 
     @GetMapping(value = "/expenses/removeOthers/{id}")
     public String removeByIdOthers(@PathVariable(value = "id") Long idOthers) {
         othersServiceJpaImpl.deleteById(idOthers);
-        return "redirect:/expenses";
+        return "redirect:/expenses/currentMonth";
     }
 
 }

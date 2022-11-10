@@ -49,18 +49,18 @@ public class SavingController {
     @GetMapping(value = "/saving/removeInvSav/{id}")
     public String removeByIdInvSav(@PathVariable(value = "id") Long idInvSav) {
         investmentsSavingServiceJpaImpl.deleteById(idInvSav);
-        return "redirect:/saving";
+        return "redirect:/saving/currentMonth";
     }
 
     @GetMapping(value = "/saving/removePropSav/{id}")
     public String removeByIdPropSav(@PathVariable(value = "id") Long idPropSav) {
         propertyCapitalSavingServiceJpaImpl.deleteById(idPropSav);
-        return "redirect:/saving";
+        return "redirect:/saving/currentMonth";
     }
 
     @GetMapping(value = "/saving/removeLiqSav/{id}")
     public String removeByIdLiqSav(@PathVariable(value = "id") Long idLiqSav) {
         liquidCapitalSavingServiceJpaImpl.deleteById(idLiqSav);
-        return "redirect:/saving";
+        return "redirect:/saving/currentMonth";
     }
 }

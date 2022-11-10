@@ -15,6 +15,7 @@ public interface UserService extends UserDetailsService {
     boolean save(User user);
     void deleteById(Long id);
     boolean existsUserByEmail(String email);
+    boolean existsUserByUsername(String username);
 
     User findUserLastAdded();
 }

@@ -45,18 +45,18 @@ public class IncomeController {
     @GetMapping(value = "/income/removeSalary/{id}")
     public String removeByIdSalary(@PathVariable(value = "id") Long idSalary) {
         salaryIncomeServiceJpaImpl.deleteById(idSalary);
-        return "redirect:/income";
+        return "redirect:/income/currentMonth";
     }
 
     @GetMapping(value = "/income/removeInvInc/{id}")
     public String removeByIdInvInc(@PathVariable(value = "id") Long idInvInc) {
         investmentsSavingServiceJpaImpl.deleteById(idInvInc);
-        return "redirect:/income";
+        return "redirect:/income/currentMonth";
     }
 
     @GetMapping(value = "/income/removeAnInc/{id}")
     public String removeByIdAnInc(@PathVariable(value = "id") Long idAnInc) {
         anotherIncomeServiceJpaImpl.deleteById(idAnInc);
-        return "redirect:/income";
+        return "redirect:/income/currentMonth";
     }
 }

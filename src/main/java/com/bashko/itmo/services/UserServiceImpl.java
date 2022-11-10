@@ -39,6 +39,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsUserByEmail(email);
     }
 
+    @Override
+    public boolean existsUserByUsername(String username) {
+        return userRepository.existsUserByUsername(username);
+    }
 
     @Override
     public boolean save(User user) {
@@ -51,8 +55,7 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
             return true;
         } else {
-            User userFromDB = userRepository.findOneByUsername(user.getUsername());
-            if (userFromDB != null) {
+            if (userRepository.existsUserByUsername(user.getUsername())) {
                 return false;
             }
             user.setRoles(Collections.singleton(roleRepository.findByName("ROLE_USER")));

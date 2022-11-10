@@ -40,8 +40,14 @@ public class RegistrationController {
             return "registration";
         }
         if (!userForm.getPassword().equals(userForm.getPasswordConfirm())) {
-            model.addAttribute("passwordError", "Пароли не совпадают");
-            return "registration";
+            if (userServiceImpl.existsUserByUsername(userForm.getUsername())) {
+                model.addAttribute("passwordError", "Пароли не совпадают");
+                model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
+                return "registration";
+            } else{
+                model.addAttribute("passwordError", "Пароли не совпадают");
+                return "registration";
+            }
         }
         if (!userServiceImpl.save(userForm)) {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");

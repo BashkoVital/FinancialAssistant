@@ -104,6 +104,50 @@
             color: #F77A52;
         }
 
+        /*=====================================================*/
+        .form-row-with-err {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-row-with-err input {
+            display: block;
+            width: 100%;
+            padding: 0 10px;
+            line-height: 40px;
+            font-family: 'Roboto', sans-serif;
+            background: none;
+            border-width: 0;
+            border-bottom: 2px solid #4a90e2;
+            transition: all 0.2s ease;
+        }
+
+        .form-row-with-err label {
+            position: absolute;
+            left: 13px;
+            color: #9d959d;
+            font-size: 20px;
+            font-weight: 300;
+            transform: translateY(-35px);
+            transition: all 0.2s ease;
+        }
+
+        .form-row-with-err input:focus {
+            outline: 0;
+            border-color: #F77A52;
+        }
+
+        .form-row-with-err input:focus + label, .form-row-with-err input:valid + label {
+            transform: translateY(-60px);
+            margin-left: -14px;
+            font-size: 14px;
+            font-weight: 400;
+            outline: 0;
+            border-color: #F77A52;
+            color: #F77A52;
+        }
+        /*=====================================================*/
+
         .ui-form input[type="submit"] {
             width: 100%;
             padding: 0;
@@ -146,6 +190,12 @@
 
         /*===================================================================================*/
 
+        .errForm {
+            text-align: left;
+            height: 15px;
+            font-size: 12px;
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -155,22 +205,25 @@
 <div>
     <form class="ui-form" th:method="POST" th:action="@{/registration}" th:object="${userForm}">
         <h3>Регистрация</h3>
-        <div class="form-row">
+        <div class="form-row-with-err">
             <input name="username" type="text" th:field="*{username}" id="login" required autocomplete="off"><label
                 for="login">Ваш логин</label>
-            <label  th:for="login" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
-               th:attr="${usernameError}">Пользователь с таким именем уже существует</label>
+            <div class="errForm">
+<!--                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Поле не должно быть пустым</p>-->
+                <span th:text="${usernameError}"></span>
+            </div>
         </div>
         <div class="form-row">
-            <input name="password" type="password" th:field="*{password}" id="password" required
-                   autocomplete="off"><label
+            <input name="password" type="password" th:field="*{password}" id="password"><label
                 for="password">Пароль</label>
         </div>
-        <div class="form-row">
-            <input name="confirmPassword" type="password" th:field="*{passwordConfirm}" id="confirmPassword"
-                   required autocomplete="off"><label for="confirmPassword">Подтверждение пароля</label>
-            <label th:for="confirmPassword" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"
-               th:attr="${passwordError.getBytes()}">Пароли не совпадают</label>
+
+        <div class="form-row-with-err">
+            <input name="confirmPassword" type="password" th:field="*{passwordConfirm}" id="confirmPassword"><label for="confirmPassword">Подтверждение пароля</label>
+            <div class="errForm">
+<!--                <p th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Пароль должен быть длиной мин 3 символа</p>-->
+                <span th:text="${passwordError}"></span>
+            </div>
         </div>
         <div class="form-row">
             <input name="firstname" type="text" th:field="*{firstName}" id="firstname" required

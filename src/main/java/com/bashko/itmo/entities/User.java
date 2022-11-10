@@ -5,6 +5,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +22,7 @@ public class User implements UserDetails {
     private Long id;
 
     @Column
+    @NotNull
     private String username;
 
     @Column
@@ -38,6 +41,7 @@ public class User implements UserDetails {
     private String phoneNumber;
 
     @Column
+    @Email
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
