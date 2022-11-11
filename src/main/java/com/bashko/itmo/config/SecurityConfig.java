@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .antMatchers("/personalArea/**")
                 .hasRole("USER")
                 //Доступ разрешен всем пользователей
-                .antMatchers("/")
+                .antMatchers("/", "/css/**")
                 .permitAll()
                 //Все остальные страницы требуют аутентификации
                 .anyRequest()

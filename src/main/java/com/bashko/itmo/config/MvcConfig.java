@@ -5,7 +5,6 @@ import org.springframework.web.servlet.config.annotation.*;
 
 
 @Configuration
-@EnableWebMvc
 public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
