@@ -1,64 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta content="text/html" charset="UTF-8">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
     <title>Аналитика</title>
     <style>
-        body {
-            padding: 20px;
-            background: #e6f4fd;
-            font-family: 'Fredoka One', cursive;
-        }
-
-        /*==============================*/
-
-        a {
-            text-decoration: none;
-            display: inline-block;
-            padding: 5px 10px;
-            letter-spacing: 1px;
-            margin: 0 20px;
-            font-size: 24px;
-            font-family: 'Fredoka One', cursive;
-            transition: .3s ease-in-out;
-        }
-
-        .s1 {
-            color: brown;
-            letter-spacing: 1px;
-            border-bottom: 1px solid transparent;
-            border-top: 1px solid transparent;
-        }
-
-        .s1:hover {
-            border-bottom: 1px solid brown;
-            border-top: 1px solid brown;
-        }
-
-        /*===============================*/
-        .container {
-            width: 100%;
-        }
-
-        .top_container {
-            width: 100%;
-            height: 50px;
-        }
-
-        .top_container div {
-            width: 300px;
-            height: 50px;
-        }
-
-        .top_container div:nth-child(1) {
-            float: right;
-        }
-
-        .top_container div:nth-child(2) {
-            float: left;
-        }
-
-        /*============================================*/
         .analytics {
             text-align: center;
         }
