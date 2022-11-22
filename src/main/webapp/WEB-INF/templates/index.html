@@ -11,7 +11,7 @@
 <body>
 <div sec:authorize="isAnonymous()">
     <div>
-        <p class="headTitle">Financial Assistant</p>
+        <p class="headTitle">Финансовый ассистент</p>
     </div>
     <div class="enter_container">
         <form th:action="@{login.html}">
@@ -35,10 +35,10 @@
     </div>
 </div>
 <div sec:authorize="isAuthenticated()">
-    <h3>Logged user: <span sec:authentication="name"></span></h3>
+    <h3>Пользователь: <span sec:authentication="name"></span></h3>
     <a class="transform-button" th:href="@{logout}"><span>Выйти</span></a>
     <div>
-        <p class="headTitle">Financial Assistant</p>
+        <p class="headTitle">Финансовый ассистент</p>
     </div>
     <div class="enter_container">
         <div>
