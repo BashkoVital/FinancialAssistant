@@ -3,6 +3,7 @@ package com.bashko.itmo.services;
 import com.bashko.itmo.entities.ExpensesCategory;
 import com.bashko.itmo.repositories.ExpensesCategoryRepository;
 import com.bashko.itmo.services.interfaceService.ExpensesCategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +11,10 @@ import java.util.List;
 
 @Service
 public class ExpensesCategoryServiceJpaImpl implements ExpensesCategoryService {
-    private ExpensesCategoryRepository expensesCategoryRepository;
+    private final ExpensesCategoryRepository expensesCategoryRepository;
 
     @Autowired
-    public void setExpensesCategoryRepository(ExpensesCategoryRepository expensesCategoryRepository) {
+    public ExpensesCategoryServiceJpaImpl(ExpensesCategoryRepository expensesCategoryRepository) {
         this.expensesCategoryRepository = expensesCategoryRepository;
     }
 

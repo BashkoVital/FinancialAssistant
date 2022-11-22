@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class IncomeController {
-    private SalaryIncomeServiceJpaImpl salaryIncomeServiceJpaImpl;
-    private InvestmentIncomeServiceJpaImpl investmentsSavingServiceJpaImpl;
-    private AnotherIncomeServiceJpaImpl anotherIncomeServiceJpaImpl;
+    private final SalaryIncomeServiceJpaImpl salaryIncomeServiceJpaImpl;
+    private final InvestmentIncomeServiceJpaImpl investmentsSavingServiceJpaImpl;
+    private final AnotherIncomeServiceJpaImpl anotherIncomeServiceJpaImpl;
 
     @Autowired
     public IncomeController(SalaryIncomeServiceJpaImpl salaryIncomeServiceJpaImpl,

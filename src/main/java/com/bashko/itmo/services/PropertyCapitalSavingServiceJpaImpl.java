@@ -17,8 +17,8 @@ import java.util.List;
 @Service
 public class PropertyCapitalSavingServiceJpaImpl implements PropertyCapitalSavingService {
 
-    private PropertyCapitalSavingRepository propertyCapitalSavingRepository;
-    private SavingCategoryRepository savingCategoryRepository;
+    private final PropertyCapitalSavingRepository propertyCapitalSavingRepository;
+    private final SavingCategoryRepository savingCategoryRepository;
 
     @Autowired
     public PropertyCapitalSavingServiceJpaImpl(PropertyCapitalSavingRepository propertyCapitalSavingRepository, SavingCategoryRepository savingCategoryRepository) {

@@ -17,11 +17,10 @@ import java.util.List;
 @Service
 public class SalaryIncomeServiceJpaImpl implements SalaryIncomeService {
 
-    private SalaryIncomeRepository salaryIncomeRepository;
-    private IncomeCategoryRepository incomeCategoryRepository;
+    private final SalaryIncomeRepository salaryIncomeRepository;
+    private final IncomeCategoryRepository incomeCategoryRepository;
 
     @Autowired
-
     public SalaryIncomeServiceJpaImpl(SalaryIncomeRepository salaryIncomeRepository, IncomeCategoryRepository incomeCategoryRepository) {
         this.salaryIncomeRepository = salaryIncomeRepository;
         this.incomeCategoryRepository = incomeCategoryRepository;

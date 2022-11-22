@@ -16,8 +16,8 @@ import java.util.List;
 
 @Service
 public class LiquidCapitalSavingServiceJpaImpl implements LiquidCapitalSavingService {
-    private LiquidCapitalSavingRepository liquidCapitalSavingRepository;
-    private SavingCategoryRepository savingCategoryRepository;
+    private final LiquidCapitalSavingRepository liquidCapitalSavingRepository;
+    private final SavingCategoryRepository savingCategoryRepository;
 
     @Autowired
     public LiquidCapitalSavingServiceJpaImpl(LiquidCapitalSavingRepository liquidCapitalSavingRepository,

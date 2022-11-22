@@ -18,11 +18,11 @@ import java.util.List;
 @Service
 public class FinAssistServiceJpaImpl implements FinAssistService {
 
-    private FinAssistRepository finAssistRepository;
+    private final FinAssistRepository finAssistRepository;
 
-    private IncomeCategoryRepository incomeCategoryRepository;
-    private ExpensesCategoryRepository expensesCategoryRepository;
-    private SavingCategoryRepository savingCategoryRepository;
+    private final IncomeCategoryRepository incomeCategoryRepository;
+    private final ExpensesCategoryRepository expensesCategoryRepository;
+    private final SavingCategoryRepository savingCategoryRepository;
 
 
     @Autowired

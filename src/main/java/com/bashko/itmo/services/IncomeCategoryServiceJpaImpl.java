@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class IncomeCategoryServiceJpaImpl implements IncomeCategoryService {
 
-    private IncomeCategoryRepository incomeCategoryRepository;
+    private final IncomeCategoryRepository incomeCategoryRepository;
 
     @Autowired
-    public void setIncomeCategoryRepository(IncomeCategoryRepository incomeCategoryRepository) {
+    public IncomeCategoryServiceJpaImpl(IncomeCategoryRepository incomeCategoryRepository) {
         this.incomeCategoryRepository = incomeCategoryRepository;
     }
 

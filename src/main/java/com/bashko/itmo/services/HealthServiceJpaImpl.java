@@ -17,18 +17,13 @@ import java.util.List;
 @Service
 public class HealthServiceJpaImpl implements HealthService {
 
-    private HealthRepository healthRepository;
-    private ExpensesCategoryRepository expensesCategoryRepository;
+    private final HealthRepository healthRepository;
+    private final ExpensesCategoryRepository expensesCategoryRepository;
 
     @Autowired
     public HealthServiceJpaImpl(HealthRepository healthRepository, ExpensesCategoryRepository expensesCategoryRepository) {
         this.healthRepository = healthRepository;
         this.expensesCategoryRepository = expensesCategoryRepository;
-    }
-
-    @Autowired
-    public void setHealthRepository(HealthRepository healthRepository) {
-        this.healthRepository = healthRepository;
     }
 
     @Override

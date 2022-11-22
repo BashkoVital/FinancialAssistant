@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class SavingCategoryServiceJpaImpl implements SavingCategoryService {
 
-    private SavingCategoryRepository savingCategoryRepository;
+    private final SavingCategoryRepository savingCategoryRepository;
 
     @Autowired
-    public void setAccessCategoryRepository(SavingCategoryRepository savingCategoryRepository) {
+    public SavingCategoryServiceJpaImpl(SavingCategoryRepository savingCategoryRepository) {
         this.savingCategoryRepository = savingCategoryRepository;
     }
 

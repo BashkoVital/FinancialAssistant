@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class AdminController {
 
-    private UserServiceImpl userServiceImpl;
-    private RoleRepository roleRepository;
+    private final UserServiceImpl userServiceImpl;
+    private final RoleRepository roleRepository;
 
     @Autowired
     public AdminController(UserServiceImpl userServiceImpl,RoleRepository roleRepository) {

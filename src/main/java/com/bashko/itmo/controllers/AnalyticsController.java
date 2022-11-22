@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AnalyticsController {
 
-    private SalaryIncomeServiceJpaImpl salaryIncomeServiceJpaImpl;
-    private InvestmentIncomeServiceJpaImpl investmentIncomeServiceJpaImpl;
-    private AnotherIncomeServiceJpaImpl anotherIncomeServiceJpaImpl;
+    private final SalaryIncomeServiceJpaImpl salaryIncomeServiceJpaImpl;
+    private final InvestmentIncomeServiceJpaImpl investmentIncomeServiceJpaImpl;
+    private final AnotherIncomeServiceJpaImpl anotherIncomeServiceJpaImpl;
 
-    private InvestmentsSavingServiceJpaImpl investmentsSavingServiceJpaImpl;
-    private PropertyCapitalSavingServiceJpaImpl propertyCapitalSavingServiceJpaImpl;
-    private LiquidCapitalSavingServiceJpaImpl liquidCapitalSavingServiceJpaImpl;
+    private final InvestmentsSavingServiceJpaImpl investmentsSavingServiceJpaImpl;
+    private final PropertyCapitalSavingServiceJpaImpl propertyCapitalSavingServiceJpaImpl;
+    private final LiquidCapitalSavingServiceJpaImpl liquidCapitalSavingServiceJpaImpl;
 
 
-    private CafeServiceJpaImpl cafeServiceJpaImpl;
-    private HealthServiceJpaImpl healthServiceJpaImpl;
-    private LeisureServiceJpaImpl leisureServiceJpaImpl;
-    private ProductServiceJpaImpl productServiceJpaImpl;
-    private TransportServiceJpaImpl transportServiceJpaImpl;
-    private OthersServiceJpaImpl othersServiceJpaImpl;
+    private final CafeServiceJpaImpl cafeServiceJpaImpl;
+    private final HealthServiceJpaImpl healthServiceJpaImpl;
+    private final LeisureServiceJpaImpl leisureServiceJpaImpl;
+    private final ProductServiceJpaImpl productServiceJpaImpl;
+    private final TransportServiceJpaImpl transportServiceJpaImpl;
+    private final OthersServiceJpaImpl othersServiceJpaImpl;
 
     @Autowired
     public AnalyticsController(SalaryIncomeServiceJpaImpl salaryIncomeServiceJpaImpl,

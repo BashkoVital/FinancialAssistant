@@ -17,8 +17,8 @@ import java.util.List;
 @Service
 public class InvestmentsSavingServiceJpaImpl implements InvestmentsSavingService {
 
-    private InvestmentsSavingRepository investmentsSavingRepository;
-    private SavingCategoryRepository savingCategoryRepository;
+    private final InvestmentsSavingRepository investmentsSavingRepository;
+    private final SavingCategoryRepository savingCategoryRepository;
 
     @Autowired
     public InvestmentsSavingServiceJpaImpl(InvestmentsSavingRepository investmentsSavingRepository, SavingCategoryRepository savingCategoryRepository) {

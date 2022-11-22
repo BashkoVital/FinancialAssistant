@@ -17,18 +17,13 @@ import java.util.List;
 @Service
 public class OthersServiceJpaImpl implements OthersService {
 
-    private OthersRepository othersRepository;
-    private ExpensesCategoryRepository expensesCategoryRepository;
+    private final OthersRepository othersRepository;
+    private final ExpensesCategoryRepository expensesCategoryRepository;
 
     @Autowired
     public OthersServiceJpaImpl(OthersRepository othersRepository, ExpensesCategoryRepository expensesCategoryRepository) {
         this.othersRepository = othersRepository;
         this.expensesCategoryRepository = expensesCategoryRepository;
-    }
-
-    @Autowired
-    public void setOthersRepository(OthersRepository othersRepository) {
-        this.othersRepository = othersRepository;
     }
 
     @Override

@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class SavingController {
 
-    private InvestmentsSavingServiceJpaImpl investmentsSavingServiceJpaImpl;
-    private PropertyCapitalSavingServiceJpaImpl propertyCapitalSavingServiceJpaImpl;
-    private LiquidCapitalSavingServiceJpaImpl liquidCapitalSavingServiceJpaImpl;
+    private final InvestmentsSavingServiceJpaImpl investmentsSavingServiceJpaImpl;
+    private final PropertyCapitalSavingServiceJpaImpl propertyCapitalSavingServiceJpaImpl;
+    private final LiquidCapitalSavingServiceJpaImpl liquidCapitalSavingServiceJpaImpl;
 
     @Autowired
     public SavingController(InvestmentsSavingServiceJpaImpl investmentsSavingServiceJpaImpl,

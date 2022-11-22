@@ -17,8 +17,8 @@ import java.util.List;
 
 @Service
 public class CafeServiceJpaImpl implements CafeService {
-    private CafeRepository cafeRepository;
-    private ExpensesCategoryRepository expensesCategoryRepository;
+    private final CafeRepository cafeRepository;
+    private final ExpensesCategoryRepository expensesCategoryRepository;
 
     @Autowired
     public CafeServiceJpaImpl(CafeRepository cafeRepository, ExpensesCategoryRepository expensesCategoryRepository) {

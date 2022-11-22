@@ -17,18 +17,13 @@ import java.util.List;
 @Service
 public class LeisureServiceJpaImpl implements LeisureService {
 
-    private LeisureRepository leisureRepository;
-    private ExpensesCategoryRepository expensesCategoryRepository;
+    private final LeisureRepository leisureRepository;
+    private final ExpensesCategoryRepository expensesCategoryRepository;
 
     @Autowired
     public LeisureServiceJpaImpl(LeisureRepository leisureRepository, ExpensesCategoryRepository expensesCategoryRepository) {
         this.leisureRepository = leisureRepository;
         this.expensesCategoryRepository = expensesCategoryRepository;
-    }
-
-    @Autowired
-    public void setLeisureRepository(LeisureRepository leisureRepository) {
-        this.leisureRepository = leisureRepository;
     }
 
     @Override

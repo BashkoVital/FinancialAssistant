@@ -17,18 +17,13 @@ import java.util.List;
 @Service
 public class ProductServiceJpaImpl implements ProductService {
 
-    private ProductRepository productRepository;
-    private ExpensesCategoryRepository expensesCategoryRepository;
+    private final ProductRepository productRepository;
+    private final ExpensesCategoryRepository expensesCategoryRepository;
 
     @Autowired
     public ProductServiceJpaImpl(ProductRepository productRepository, ExpensesCategoryRepository expensesCategoryRepository) {
         this.productRepository = productRepository;
         this.expensesCategoryRepository = expensesCategoryRepository;
-    }
-
-    @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
     }
 
     @Override

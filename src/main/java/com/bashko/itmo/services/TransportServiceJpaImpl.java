@@ -17,18 +17,13 @@ import java.util.List;
 @Service
 public class TransportServiceJpaImpl implements TransportService {
 
-    private TransportRepository transportRepository;
-    private ExpensesCategoryRepository expensesCategoryRepository;
+    private final TransportRepository transportRepository;
+    private final ExpensesCategoryRepository expensesCategoryRepository;
 
     @Autowired
     public TransportServiceJpaImpl(TransportRepository transportRepository, ExpensesCategoryRepository expensesCategoryRepository) {
         this.transportRepository = transportRepository;
         this.expensesCategoryRepository = expensesCategoryRepository;
-    }
-
-    @Autowired
-    public void setTransportRepository(TransportRepository transportRepository) {
-        this.transportRepository = transportRepository;
     }
 
     @Override

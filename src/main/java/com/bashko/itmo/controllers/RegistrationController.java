@@ -17,8 +17,8 @@ import javax.validation.Valid;
 @Controller
 public class RegistrationController {
 
-    private UserServiceImpl userServiceImpl;
-    private FinAssistServiceJpaImpl finAssistServiceJpaImpl;
+    private final UserServiceImpl userServiceImpl;
+    private final FinAssistServiceJpaImpl finAssistServiceJpaImpl;
 
     @Autowired
     public RegistrationController(UserServiceImpl userServiceImpl, FinAssistServiceJpaImpl finAssistServiceJpaImpl) {

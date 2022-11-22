@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class ExpensesController {
 
-    private CafeServiceJpaImpl cafeServiceJpaImpl;
-    private HealthServiceJpaImpl healthServiceJpaImpl;
-    private LeisureServiceJpaImpl leisureServiceJpaImpl;
-    private ProductServiceJpaImpl productServiceJpaImpl;
-    private TransportServiceJpaImpl transportServiceJpaImpl;
-    private OthersServiceJpaImpl othersServiceJpaImpl;
+    private final CafeServiceJpaImpl cafeServiceJpaImpl;
+    private final HealthServiceJpaImpl healthServiceJpaImpl;
+    private final LeisureServiceJpaImpl leisureServiceJpaImpl;
+    private final ProductServiceJpaImpl productServiceJpaImpl;
+    private final TransportServiceJpaImpl transportServiceJpaImpl;
+    private final OthersServiceJpaImpl othersServiceJpaImpl;
 
     @Autowired
     public ExpensesController(CafeServiceJpaImpl cafeServiceJpaImpl,

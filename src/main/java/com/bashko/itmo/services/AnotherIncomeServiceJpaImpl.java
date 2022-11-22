@@ -16,8 +16,8 @@ import java.util.List;
 
 @Service
 public class AnotherIncomeServiceJpaImpl implements AnotherIncomeService {
-    private AnotherIncomeRepository anotherIncomeRepository;
-    private IncomeCategoryRepository incomeCategoryRepository;
+    private final AnotherIncomeRepository anotherIncomeRepository;
+    private final IncomeCategoryRepository incomeCategoryRepository;
 
     @Autowired
     public AnotherIncomeServiceJpaImpl(AnotherIncomeRepository anotherIncomeRepository, IncomeCategoryRepository incomeCategoryRepository) {
